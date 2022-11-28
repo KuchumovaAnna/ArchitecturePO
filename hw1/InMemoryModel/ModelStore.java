@@ -1,16 +1,16 @@
-package JavaArchitectHW1.InMemoryModel;
+package InMemoryModel;
 
 import java.util.ArrayList;
 
-import JavaArchitectHW1.ModelElements.Camera;
-import JavaArchitectHW1.ModelElements.LightSource;
-import JavaArchitectHW1.ModelElements.PolygonalModel;
-import JavaArchitectHW1.ModelElements.Scene;
+import hw1.ModelElements.Camera;
+import hw1.ModelElements.LightS;
+import hw1.ModelElements.PolygonalModel;
+import hw1.ModelElements.Scene;
 
 public class ModelStore implements IModelChanger {
     private ArrayList<PolygonalModel> models;
     private ArrayList<Scene> scenes;
-    private ArrayList<LightSource> lightSources;
+    private ArrayList<LightS> lightS;
     private ArrayList<Camera> cameras;
     
     private ArrayList<IModelChangedObserver> changeObservers;
@@ -62,8 +62,8 @@ public class ModelStore implements IModelChanger {
         NotifyChange(this);
     }
 
-    public ArrayList<LightSource> getLightSources() {
-        return lightSources;
+    public ArrayList<LightS> getLightS() {
+        return lightS;
     }
 
     public void setLightSources(ArrayList<LightSource> lightSources) {
@@ -71,8 +71,8 @@ public class ModelStore implements IModelChanger {
         NotifyChange(this);
     }
 
-    public void addLightSources(LightSource lightSource) {
-        lightSources.add(lightSource);
+    public void addLightS(LightS lightS) {
+        lightS.add(lightS);
         NotifyChange(this);
     }
 
