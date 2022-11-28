@@ -2,10 +2,10 @@ package InMemoryModel;
 
 import java.util.ArrayList;
 
-import hw1.ModelElements.Camera;
-import hw1.ModelElements.LightS;
-import hw1.ModelElements.PolygonalModel;
-import hw1.ModelElements.Scene;
+import ModelElements.Camera;
+import ModelElements.LightS;
+import ModelElements.PolygonalModel;
+import ModelElements.Scene;
 
 public class ModelStore implements IModelChanger {
     private ArrayList<PolygonalModel> models;
@@ -15,11 +15,11 @@ public class ModelStore implements IModelChanger {
     
     private ArrayList<IModelChangedObserver> changeObservers;
 
-    public ModelStore(ArrayList<PolygonalModel> models, ArrayList<Scene> scenes, ArrayList<LightSource> lightSources,
+    public ModelStore(ArrayList<PolygonalModel> models, ArrayList<Scene> scenes, ArrayList<LightS> lightSources,
             ArrayList<Camera> cameras) {
         this.models = models;
         this.scenes = scenes;
-        this.lightSources = lightSources;
+        this.lightS = lightSources;
         this.cameras = cameras;
     }
 
@@ -66,8 +66,8 @@ public class ModelStore implements IModelChanger {
         return lightS;
     }
 
-    public void setLightSources(ArrayList<LightSource> lightSources) {
-        this.lightSources = lightSources;
+    public void setLightSources(ArrayList<LightS> lightSources) {
+        this.lightS = lightSources;
         NotifyChange(this);
     }
 

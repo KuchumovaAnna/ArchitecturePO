@@ -1,4 +1,4 @@
-package JavaArchitectHW1.InMemoryModel;
+package InMemoryModel;
 
 public interface IModelChanger {
     void NotifyChange(IModelChanger sender);
