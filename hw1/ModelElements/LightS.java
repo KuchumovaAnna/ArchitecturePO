@@ -1,8 +1,8 @@
 package ModelElements;
 
-import ModelElements.BasicClasses.Angle3D;
-import ModelElements.BasicClasses.Color;
-import ModelElements.BasicClasses.Point3D;
+import ModelElements.Basic.Angle3D;
+import ModelElements.Basic.Color;
+import ModelElements.Basic.Point3D;
 
 public class LightS {
     private Point3D position;
@@ -43,5 +43,8 @@ public class LightS {
     }
     public void setPower(Float power) {
         this.power = power;
+    }
+
+    public void add(LightS lightS) {
     }
 }

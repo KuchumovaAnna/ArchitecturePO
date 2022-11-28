@@ -1,10 +1,10 @@
 package ModelElements;
 
 import java.util.HashSet;
-import JavaArchitectHW1.ModelElements.BasicClasses.Point3D;
+import ModelElements.Basic.Point3D;
 
 public class Polygon {
-    /** Набор точек (а не список), так как наличие двух идентичных точек в рамках одной поскости бессмысленно */
+    
     private HashSet<Point3D> points;
 
     public Polygon(HashSet<Point3D> points){

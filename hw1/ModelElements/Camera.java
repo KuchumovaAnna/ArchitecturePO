@@ -1,7 +1,7 @@
 package ModelElements;
 
-import JavaArchitectHW1.ModelElements.BasicClasses.Angle3D;
-import JavaArchitectHW1.ModelElements.BasicClasses.Point3D;
+import ModelElements.Basic.Angle3D;
+import ModelElements.Basic.Point3D;
 
 public class Camera {
     private Point3D position;
