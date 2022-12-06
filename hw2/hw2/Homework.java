@@ -1,4 +1,4 @@
-package ru.geekbrains.seminar2;
+package hw2;
 
 public class Homework {
 
