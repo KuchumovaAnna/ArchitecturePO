@@ -2,30 +2,20 @@ package hw2;
 
 public class Homework {
 
-    static Employee generateEmploeyee(){
-
-        //  String[] names = new String[] { "Анатолий", "Глеб", "Клим", "Мартин", "Лазарь", "Владлен", "Клим", "Панкратий", "Рубен", "Герман" };
-        //  String[] surnames = new String[] { "Григорьев", "Фокин", "Шестаков", "Хохлов", "Шубин", "Бирюков", "Копылов", "Горбунов", "Лыткин", "Соколов" };
-
-
-        //TODO: Доработать самостоятельно.
-        return  null;
-    }
-
-
     public static void main(String[] args) {
 
-        Worker worker1 = new Worker("Анатолий", "Шестанов", 70000);
-        System.out.println(worker1);
-
-        //TODO: Домашняя работа
-        // 1. Доработать метод generateEmploeyee(), вернуть сотрудника определенного типа.
-        // 2***. Метод generateEmploeyee() должен быть без входных параметров, тип сотрудника,
+        // TODO: Домашняя работа
+        // 1. Доработать метод generateEmployee(), вернуть сотрудника определенного типа.
+        // 2***. Метод generateEmployee() должен быть без входных параметров, тип сотрудника,
         // фио и ставка генерируются автоматически.
 
+        ConcreteEmployeeCreator concreteEmployeeCreator = new ConcreteEmployeeCreator();
+
+
         Employee[] employees = new Employee[10];
-        for (int i = 0; i < employees.length; i++){
-            employees[i] = generateEmploeyee();
+        for (int i = 0; i < employees.length; i++) {
+            concreteEmployeeCreator.setCounter(i);
+            employees[i] = concreteEmployeeCreator.generateEmployee(EmployeeType.Worker);
         }
 
         for (Employee employee : employees) {
@@ -33,8 +23,50 @@ public class Homework {
         }
 
     }
-
 }
+
+    enum EmployeeType{
+        Worker,
+        Freelancer
+    }
+
+    abstract class EmployeeCreator {
+
+        public Employee generateEmployee(EmployeeType employeeType) {
+
+            Employee employee = createEmployee(employeeType);
+            String[] names = new String[] { "Анатолий", "Глеб", "Клим", "Мартин", "Лазарь", "Владлен", "Клим",
+                    "Панкратий", "Рубен", "Герман" };
+            String[] surnames = new String[] { "Григорьев", "Фокин", "Шестаков", "Хохлов", "Шубин", "Бирюков",
+                    "Копылов", "Горбунов", "Лыткин", "Соколов" };
+            employee.name = names[counter];
+            employee.surname = surnames[counter];
+            employee.salary = employee.calculateSalary();
+
+            return employee;
+        }
+
+        protected abstract Employee createEmployee(EmployeeType employeeType);
+
+        public void setCounter(int counter) {
+            this.counter = counter;
+        }
+
+        int counter = 0;
+    }
+
+
+    class ConcreteEmployeeCreator extends EmployeeCreator{
+
+        @Override
+        protected Employee createEmployee(EmployeeType employeeType) {
+            return switch (employeeType){
+                case Worker -> new Worker();
+                case Freelancer -> new Freelancer();
+            };
+        }
+    }
+
 
 /**
  * Работник (базовый класс)
@@ -72,10 +104,12 @@ abstract class Employee {
         this.salary = salary;
     }
 
-    public Employee(String name, String surname, double salary) {
+    public Employee(String name, String surname) {
         this.name = name;
         this.surname = surname;
-        this.salary = salary;
+    }
+
+    public Employee() {
     }
 
     /**
@@ -87,9 +121,13 @@ abstract class Employee {
 }
 
 class Freelancer extends Employee{
+    Double salary = 1000d;
+    public Freelancer(String name, String surname) {
+        super(name, surname);
+    }
 
-    public Freelancer(String name, String surname, double salary) {
-        super(name, surname, salary);
+    public Freelancer() {
+
     }
 
     @Override
@@ -106,8 +144,13 @@ class Freelancer extends Employee{
 
 class Worker extends Employee{
 
-    public Worker(String name, String surname, double salary) {
-        super(name, surname, salary);
+    Double salary = 80000d;
+    public Worker(String name, String surname) {
+        super(name, surname);
+    }
+
+    public Worker() {
+
     }
 
     @Override
